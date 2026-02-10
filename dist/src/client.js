@@ -209,7 +209,7 @@ class Client {
       });
 
       return this.rpc.postAsync({
-        body: _lodash2.default.pickBy({
+        qs: _lodash2.default.pickBy({
           user_ip: ip
         }, _lodash2.default.identity),
         uri: _urlEscapeTag2.default`users/${authyId}/remove`
@@ -424,7 +424,7 @@ class Client {
       });
 
       return this.rpc.getAsync({
-        body: _lodash2.default.pickBy({
+        qs: _lodash2.default.pickBy({
           user_ip: ip
         }, _lodash2.default.identity),
         uri: _urlEscapeTag2.default`users/${authyId}/status`
@@ -482,9 +482,11 @@ class Client {
       return this.rpc.postAsync({
         body: {
           data: data,
-          type: type,
-          user_ip: ip
+          type: type
         },
+        qs: _lodash2.default.pickBy({
+          user_ip: ip
+        }, _lodash2.default.identity),
         uri: _urlEscapeTag2.default`users/${authyId}/register_activity`
       }).bind(this).then(_responseParser2.default).tap(response => {
         (0, _validator.assert)(response, {

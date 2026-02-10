@@ -132,7 +132,7 @@ export default class Client {
       });
 
       return this.rpc.postAsync({
-        body: _.pickBy({
+        qs: _.pickBy({
           user_ip: ip
         }, _.identity),
         uri: esc`users/${authyId}/remove`
@@ -299,7 +299,7 @@ export default class Client {
       });
 
       return this.rpc.getAsync({
-        body: _.pickBy({
+        qs: _.pickBy({
           user_ip: ip
         }, _.identity),
         uri: esc`users/${authyId}/status`
@@ -344,9 +344,11 @@ export default class Client {
       return this.rpc.postAsync({
         body: {
           data,
-          type,
-          user_ip: ip
+          type
         },
+        qs: _.pickBy({
+          user_ip: ip
+        }, _.identity),
         uri: esc`users/${authyId}/register_activity`
       })
         .bind(this)

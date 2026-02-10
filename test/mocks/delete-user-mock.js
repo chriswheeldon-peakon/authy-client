@@ -13,6 +13,7 @@ function mock({ request = {}, response = {} }) {
   return nock(/\.authy\.com/)
     .filteringPath(path => path.replace(/\/[0-9]+\//, '/{authyId}/'))
     .post('/protected/json/users/{authyId}/remove', request.body)
+    .query(request.query ? request.query : true)
     .reply(response.code, response.body);
 }
 

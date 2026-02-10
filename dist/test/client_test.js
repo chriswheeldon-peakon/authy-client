@@ -1832,7 +1832,7 @@ describe('Client', () => {
     }));
 
     it('should accept the `ip` of the requester', _asyncToGenerator(function* () {
-      mocks.deleteUser.succeed({ request: { body: { user_ip: '127.0.0.1' } } });
+      mocks.deleteUser.succeed({ request: { query: { user_ip: '127.0.0.1' } } });
 
       yield client.deleteUser({ authyId: 1635 }, { ip: '127.0.0.1' });
     }));
@@ -1939,7 +1939,7 @@ describe('Client', () => {
     }));
 
     it('should accept the `ip` of the requester', _asyncToGenerator(function* () {
-      mocks.getUserStatus.succeed({ request: { body: { user_ip: '127.0.0.1' } } });
+      mocks.getUserStatus.succeed({ request: { query: { user_ip: '127.0.0.1' } } });
 
       yield client.getUserStatus({ authyId: 1635 }, { ip: '127.0.0.1' });
     }));
@@ -2137,7 +2137,9 @@ describe('Client', () => {
             data: {
               reason: 'foo'
             },
-            type: 'banned',
+            type: 'banned'
+          },
+          query: {
             user_ip: '86.112.56.34'
           }
         }
